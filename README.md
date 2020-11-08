@@ -12,3 +12,12 @@
 
 ### Steps to Use :
 1. Run app.py in the web app folder using anaconda prompt.
+
+### modules :
+1. Tensorflow
+2. Keras
+3. Flask
+4. PIL
+5. opencv
+6. os
+
