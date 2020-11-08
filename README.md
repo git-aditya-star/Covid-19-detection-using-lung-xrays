@@ -20,4 +20,7 @@
 4. PIL
 5. opencv
 6. os
+7. scikit-learn
+8. matplotlib
+
 
