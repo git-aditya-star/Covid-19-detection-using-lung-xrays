@@ -1,0 +1,19 @@
+
+
+h1{
+   margin-top: 10;
+}
+#button{
+    margin-top: 20;
+    margin-bottom: 20;
+    
+}
+
+#predict-button {
+    width: 100;
+    height: auto;
+ color: white;
+ background-color: black;
+ 
+}
+

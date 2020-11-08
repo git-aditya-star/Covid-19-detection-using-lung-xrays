@@ -1,0 +1,73 @@
+<html>
+	<head>
+        <title>COVID-19 TESTING</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/css1.css') }}">
+	</head>
+
+	<body  background="https://th.thgim.com/sci-tech/science/ppr12l/article31875552.ece/ALTERNATES/FREE_660/21TH-SCIANTIBODYjpg" style=" background-repeat: no-repeat; background-size: 100%; ">
+       
+        <h1 style="font-size: 50; text-align: center; margin-top: 10;">COVID-19 TESTING USING X-RAY IMAGES</h1>
+        <div class="row">
+        
+            <div class="column" style=" width: 50%; float: left; margin-left: 30px; ">
+                
+              
+                <div id="button">
+                <input id="image-selector" type="file" style="font-size: 25;"> 
+        
+                <button id="predict-button" style="float: right; font-size: 25px;">Predict</button>
+                </div>
+        <hr >
+        <div id="text">
+		    <p style="font-weight: bold; font-size: 25;">PREDICTION: <span id="result">...</span></p>
+            <p style="font-weight: bold; font-size: 25;">PROBABILITY: <span id="probability">...</span></p>
+        </div>
+        <hr >
+        <div id="img">
+            <img id="selected-image" width="400" src=""/></div>
+        </div>
+        <div class="column" style="float: right; margin-right: 30px;">
+        <iframe 
+        allow="microphone;"
+        width="350px"
+        height="430px"
+        src="https://console.dialogflow.com/api-client/demo/embedded/a491a41c-ca93-465e-9be2-31a2f70152ba">
+        </iframe>
+    </div>
+    </div>
+
+	</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+    let base64Image;
+    $("#image-selector").change(function() {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let dataURL = reader.result;
+            $('#selected-image').attr("src", dataURL);
+            base64Image = dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+            console.log(base64Image);
+        }
+        reader.readAsDataURL($("#image-selector")[0].files[0]);
+        $("#result").text("");
+        $("#probability").text("");
+
+    });
+
+    $("#predict-button").click(function(){
+            let message = {
+            image: base64Image
+        }
+        console.log(message);
+        $.post("http://127.0.0.1:5000/predict", JSON.stringify(message), function(response){
+            $("#result").text(response.prediction.result);
+            $("#probability").text(response.prediction.accuracy.toFixed(5));
+            console.log(response);
+        });
+    });
+    
+</script>
+
+</html>
