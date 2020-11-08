@@ -10,3 +10,5 @@
 1. https://www.kaggle.com/praveengovi/coronahack-chest-xraydataset
 2. https://github.com/ieee8023/covid-chestxray-dataset
 
+### Steps to Use :
+1. Run app.py in the web app folder using anaconda prompt.
